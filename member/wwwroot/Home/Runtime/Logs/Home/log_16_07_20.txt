@@ -1,0 +1,30 @@
+[ 2016-07-20T15:53:05+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:07+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:10+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:41+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:41+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:42+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:42+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:42+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:42+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:43+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:02:43+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:03:59+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:05:31+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:05:50+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  
+[ 2016-07-20T16:11:07+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  

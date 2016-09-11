@@ -1,0 +1,38 @@
+[ 2016-07-21T08:56:57+08:00 ] 127.0.0.1 /index.php/Time/
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-07-21T08:56:57+08:00 ] 127.0.0.1 /index.php/Time/js/bootstrap.min.js
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-07-21T08:56:58+08:00 ] 127.0.0.1 /index.php/Time/css/non-responsive.css
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-07-21T08:57:04+08:00 ] 127.0.0.1 /index.php/Home/Time/edit/id/2181/
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-07-21T08:57:04+08:00 ] 127.0.0.1 /index.php/Home/Time/edit/id/2181/css/non-responsive.css
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-07-21T08:57:05+08:00 ] 127.0.0.1 /index.php/Home/Time/edit/id/2181/js/bootstrap.min.js
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-07-21T08:57:27+08:00 ] 127.0.0.1 /index.php/Type/
+ERR: Array
+[ 2016-07-21T08:57:27+08:00 ] 127.0.0.1 /index.php/Type/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-07-21T08:57:27+08:00 ] 127.0.0.1 /index.php/Type/css/non-responsive.css
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-07-21T08:57:28+08:00 ] 127.0.0.1 /index.php/Type/js/bootstrap.min.js
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-07-21T08:57:29+08:00 ] 127.0.0.1 /index.php/Home/Type/edit/id/1234/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-07-21T08:57:29+08:00 ] 127.0.0.1 /index.php/Home/Type/edit/id/1234/css/non-responsive.css
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-07-21T08:57:30+08:00 ] 127.0.0.1 /index.php/Home/Type/edit/id/1234/js/bootstrap.min.js
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+

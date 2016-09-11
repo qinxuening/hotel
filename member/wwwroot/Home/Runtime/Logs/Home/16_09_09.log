@@ -1,0 +1,30 @@
+[ 2016-09-09T11:01:03+08:00 ] 127.0.0.1 /index.php/Type/
+ERR: Array
+[ 2016-09-09T11:01:03+08:00 ] 127.0.0.1 /index.php/Type/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-09-09T11:01:42+08:00 ] 127.0.0.1 /index.php/Type/
+ERR: Array
+[ 2016-09-09T11:01:42+08:00 ] 127.0.0.1 /index.php/Type/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-09-09T11:02:15+08:00 ] 127.0.0.1 /index.php/Type/
+ERR: Array
+[ 2016-09-09T11:02:15+08:00 ] 127.0.0.1 /index.php/Type/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-09-09T11:08:28+08:00 ] 127.0.0.1 /index.php/Type/
+ERR: Array
+[ 2016-09-09T11:08:28+08:00 ] 127.0.0.1 /index.php/Type/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+
+[ 2016-09-09T14:06:41+08:00 ] 127.0.0.1 /index.php/Home/Mobile/edit/id/MOTLYUwCNBDAkOO0O0O6d5bcdfde63/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+NOTIC: D方法实例化没找到模型类Home\Model\LinklistModel
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-09-09T15:09:55+08:00 ] 127.0.0.1 /index.php/Home/Mobile/edit/id/MOTLYUwCMBjAkOO0O0O6f5fd322ed5/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+NOTIC: D方法实例化没找到模型类Home\Model\LinklistModel
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+

@@ -1,0 +1,1 @@
+a:6:{i:0;s:3:"pid";i:1;s:8:"familyid";i:2;s:10:"familyname";i:3;s:6:"wUseID";s:3:"_pk";s:3:"pid";s:5:"_type";a:4:{s:3:"pid";s:10:"bigint(20)";s:8:"familyid";s:11:"varchar(50)";s:10:"familyname";s:12:"varchar(100)";s:6:"wUseID";s:11:"varchar(50)";}}

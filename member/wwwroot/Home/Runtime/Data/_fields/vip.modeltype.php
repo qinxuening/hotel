@@ -1,0 +1,1 @@
+a:4:{i:0;s:6:"wUseID";i:1;s:6:"wModel";i:2;s:4:"McID";s:5:"_type";a:3:{s:6:"wUseID";s:11:"varchar(20)";s:6:"wModel";s:7:"int(16)";s:4:"McID";s:10:"varchar(5)";}}

@@ -1,0 +1,2 @@
+[ 2016-07-20T15:51:02+08:00 ] 127.0.0.1 /index.php/User/
+WARN: SELECT `pid`,`familyid`,`familyname` FROM `usermanager` WHERE `wUseID` = 'qinxuening' ORDER BY Pid desc LIMIT 0,10  

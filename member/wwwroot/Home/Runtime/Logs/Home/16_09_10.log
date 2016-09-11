@@ -1,0 +1,20 @@
+[ 2016-09-10T22:50:42+08:00 ] 127.0.0.1 /index.php/Mobile/edit/id/16045/
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+NOTIC: D方法实例化没找到模型类Home\Model\LinklistModel
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-09-10T22:50:42+08:00 ] 127.0.0.1 /index.php/Mobile/edit/id/16045/js/bootstrap.min.js
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+NOTIC: D方法实例化没找到模型类Home\Model\LinklistModel
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-09-10T22:50:43+08:00 ] 127.0.0.1 /index.php/Mobile/edit/id/16045/css/non-responsive.css
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+NOTIC: D方法实例化没找到模型类Home\Model\LinklistModel
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
+[ 2016-09-10T22:59:23+08:00 ] 127.0.0.1 /index.php/Mobile/edit/id/16045/css/non-responsive.css
+NOTIC: D方法实例化没找到模型类Home\Model\ModeltypeModel
+NOTIC: D方法实例化没找到模型类Home\Model\LinklistModel
+NOTIC: D方法实例化没找到模型类Home\Model\TimeactionModel
+
