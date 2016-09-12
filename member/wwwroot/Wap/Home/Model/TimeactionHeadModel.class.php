@@ -22,8 +22,12 @@ class TimeactionHeadModel extends RelationModel{
 	);
 	
 	public function CheckPid($Pid){
-		$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('Pid')->select();
-		$ListPidO = TarrayToOarray($ListPid, 'Pid');
+		if(S('List_Time_Cache_'.session('pid'))){
+			$ListPidO = TarrayToOarray(S('List_Time_Cache_'.session('pid')), 'Pid');
+		}else{
+			$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('Pid')->select();
+			$ListPidO = TarrayToOarray($ListPid, 'Pid');
+		}
 		if(in_array($Pid, $ListPidO)){
 			return true;
 		}else{
@@ -33,9 +37,9 @@ class TimeactionHeadModel extends RelationModel{
 	
 	public function ReUpdateTimeInfo(){
 		$list = $this->where(array('wUseID' => session('wUseID')))->field('wName, Pid')->order(array('Pid'=>'desc'))->select();
-		foreach ($list as $k => $v){
-			$list[$k]['Pid'] = encode($v['Pid'], C('GRYPTKEY'));
-		}
+		/*foreach ($list as $k => $v){
+			$list[$k]['Pid'] = $v['Pid'];//encode($v['Pid'], C('GRYPTKEY'));
+		}*/
 		S('List_Time_Cache_'.session('pid'), $list);
 		if(!S('List_Time_Cache_'.session('pid'))){
 			return $list;

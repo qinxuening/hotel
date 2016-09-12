@@ -14,8 +14,12 @@ class MobilemanagerModel extends Model{
 	);
 	
 	public function CheckPid($Pid){
-		$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('Pid')->select();
-		$ListPidO = TarrayToOarray($ListPid, 'Pid');
+		if(S('List_Mobile_Cache_'.session('pid'))){
+			$ListPidO = TarrayToOarray(S('List_Mobile_Cache_'.session('pid')), 'Pid');
+		}else{
+			$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('Pid')->select();
+			$ListPidO = TarrayToOarray($ListPid, 'Pid');
+		}	
 		if(in_array($Pid, $ListPidO)){
 			return true;
 		}else{
@@ -61,11 +65,11 @@ class MobilemanagerModel extends Model{
 			and BrandNO='RN51F/BG'
 			and left(b.KeyName,2)='模式' ORDER BY KeyID;";
 		$list = M()->query($sql);
-		S('List_Ifi_Cache_'.session('pid'), $list);
-		if(!S('List_Ifi_Cache_'.session('pid'))){
+		S('List_Ifi_Cache_'.session('pid').'_'.$McID, $list);
+		if(!S('List_Ifi_Cache_'.session('pid').'_'.$McID)){
 			return $list;
 		}
-		return S('List_Ifi_Cache_'.session('pid'));
+		return S('List_Ifi_Cache_'.session('pid').'_'.$McID);
 	}
 
 	public function UserMoblieList($wUseID){

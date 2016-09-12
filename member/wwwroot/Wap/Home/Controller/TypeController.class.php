@@ -21,7 +21,8 @@ class TypeController extends CommonController{
 	}
 
 	public function del(){
-		$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));		
+		//$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		$Pid = I("get.id");		
 		if($this->modeltype_head->CheckPid($Pid)){
 			$result = $this->modeltype_head->relation(true)->where(array('Pid' => $Pid))->delete();
 			if($result){
@@ -37,50 +38,69 @@ class TypeController extends CommonController{
 	}
 
 	public function edit(){
-		$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		$Pid = I("get.id");
 		if($this->modeltype_head->CheckPid($Pid)){
-			//$wMB=session('wMB');
-			//$wUseID=session('wUseID');
-			//$list = $this->mobilemanager->query("select `McID`, `McName` from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('02','03','12','15')");
 			if(!S('List_Mobile_Cache_'.session('pid'))){
-				$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
+				$Rlist = $this->mobilemanager->ReUpdateMobileInfo();
+			}else{
+				$Rlist = S('List_Mobile_Cache_'.session('pid'));
+			}
+			foreach ($Rlist as $k => $v){
+				if(substr($v['McID'] , 0 ,2) != '12'){
+					$list[] = $Rlist[$k];
+				}
 			}
 			$find=$this->modeltype_head->where(array("Pid" => $Pid))->field("wUseID",true)->find();
 			if($find){
-				$findmodel=$this->modeltype->where(array("wModel" => $find['Pid']))->field('McID')->select();
-				$m = TarrayToOarray($findmodel, 'McID');
-				$this->assign("checklist",$m);
-				$this->assign("myMobile",S('List_Mobile_Cache_'.session('pid'))?S('List_Mobile_Cache_'.session('pid')):$list);
-				$find['Pid'] = I("get.id");
+				$findmodel=$this->modeltype->where(array("wModel" => $find['Pid']))->field('McID ,Type')->select();
+				foreach ($findmodel as $k => $v){
+					if(1 == $v['Type']){
+						$dataOn[] = $v['McID'];
+					}else{
+						$dataOff[] = $v['McID'];
+					}
+				}
+				$this->assign("checklistOn" , $dataOn);
+				$this->assign("checklistOff" , $dataOff);
+				$this->assign("myMobile",$list);
 				$this->assign('type',$find);
-				$this->assign('my4','btn0_a');
 				$this->display();
 			}else{
 				$this->error(L('S_parameter_e'));
 			}
 		}else{
 			$this->error(L('S_parameter_e'));
-		}
+		}			
 	}
 
 	public function update(){
-		$Pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$Pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		$Pid = I("get.id");
 		if($this->modeltype_head->CheckPid($Pid)){
 			$HeadInfo = I('post.');
 			$HeadInfo['wUseID'] = session('wUseID');
 			if($this->modeltype_head->create($HeadInfo)){
-				if($this->modeltype_head->where(array("Pid" => $Pid))->save()){
-					$this->modeltype_head->UpdateTypeInfo(array('wName' => trim(I('post.wName'))), I("get.id"));
-				}
+				$this->modeltype_head->where(array("Pid" => $Pid))->save();
 			}
 			$this->modeltype->where(array("wModel" => $Pid))->delete();
-			$wModeldata=I('post.wModel',null);
-			for($i=0;$i<count($wModeldata);$i++){
-				$data['wModel']=$Pid;
-				$data['McID']=$wModeldata[$i];
-				$data['wUseID']=session('wUseID');
+			$wModelOndata=I('post.wModelOn',null);
+			$wModelOffdata=I('post.wModelOff',null);
+			for($i=0;$i<count($wModelOndata);$i++){
+				$dataOn['wModel']=$Pid;
+				$dataOn['McID']=$wModelOndata[$i];
+				$dataOn['wUseID']=session('wUseID');
+				$dataOn['Type']= 1;
 				$this->modeltype->create();
-				$this->modeltype->add($data);
+				$this->modeltype->add($dataOn);
+			}
+			for($i=0;$i<count($wModelOffdata);$i++){
+				$dataOff['wModel']=$Pid;
+				$dataOff['McID']=$wModelOffdata[$i];
+				$dataOff['wUseID']=session('wUseID');
+				$dataOff['Type']= 0;
+				$this->modeltype->create();
+				$this->modeltype->add($dataOff);
 			}
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Type/';
 			header("Location:$url");
@@ -90,13 +110,17 @@ class TypeController extends CommonController{
 	}
 
 	public function add(){
-		//$wMB=session('wMB');
-		//$wUseID=session('wUseID');
-		//$list = $this->mobilemanager->query("select `McID`, `McName` from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('02','03','12','15')");
 		if(!S('List_Mobile_Cache_'.session('pid'))){
-			$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
+			$Rlist = $this->mobilemanager->ReUpdateMobileInfo();
+			}else{
+				$Rlist = S('List_Mobile_Cache_'.session('pid'));
+			}
+			foreach ($Rlist as $k => $v){
+				if(substr($v['McID'] , 0 ,2) != '12'){
+					$list[] = $Rlist[$k];
+			}
 		}
-		$this->assign("myMobile",S('List_Mobile_Cache_'.session('pid'))?S('List_Mobile_Cache_'.session('pid')):$list);
+		$this->assign("myMobile",$list);
 		$this->assign('my5','btn0_a');
 		$this->display();
 	}
@@ -106,15 +130,23 @@ class TypeController extends CommonController{
 		$HeadInfo['wUseID'] = session('wUseID');
 		if($this->modeltype_head->create($HeadInfo)){
 			$id=$this->modeltype_head->add();
-			$this->modeltype_head->UpdateUserAddInfo(array('wName' => I('post.wName'), 'Pid'=> encode($id , C('GRYPTKEY'))));
-			$wModeldata=I('post.wModel',null);
-			$Model=D("modeltype");
-			for($i=0;$i<count($wModeldata);$i++){
-				$data['wModel']=$id;
-				$data['McID']=$wModeldata[$i];
-				$data['wUseID']=session('wUseID');
+			$wModelOndata=I('post.wModelOn',null);
+			$wModelOffdata=I('post.wModelOff',null);
+			for($i=0;$i<count($wModelOndata);$i++){
+				$dataOn['wModel']=$id;
+				$dataOn['McID']=$wModelOndata[$i];
+				$dataOn['wUseID']=session('wUseID');
+				$dataOn['Type']= 1;
 				$this->modeltype->create();
-				$this->modeltype->add($data);
+				$this->modeltype->add($dataOn);
+			}
+			for($i=0;$i<count($wModelOffdata);$i++){
+				$dataOff['wModel']=$id;
+				$dataOff['McID']=$wModelOffdata[$i];
+				$dataOff['wUseID']=session('wUseID');
+				$dataOff['Type']= 0;
+				$this->modeltype->create();
+				$this->modeltype->add($dataOff);
 			}
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Type/';
 			header("Location:$url");

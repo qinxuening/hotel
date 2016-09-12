@@ -19,7 +19,7 @@ return array(
 	'DATA_CACHE_TIME'       =>  3600,
 	'DATA_CACHE_PREFIX'     =>  'oubao',
 	'MEMCACHE_HOST' => '127.0.0.1',
-	'MEMCACHE_PORT'	=>	'11211',
+	'MEMCACHE_PORT'	=>	'11212',
 		
 	/*'DATA_CACHE_TYPE' => 'Redis',
 	'REDIS_RW_SEPARATE' => false, //Redis读写分离 true 开启

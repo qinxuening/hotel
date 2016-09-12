@@ -19,7 +19,6 @@ class UserController extends CommonController{
 		if(!S('List_User_Cache_'.session('pid'))){
 			$UserListInfo = $this->usermanager->ReUpdateUserInfo();
 		}
-		//print_r(S('List_User_Cache_'.session('pid')));
 		$this->assign("myfamily", S('List_User_Cache_'.session('pid'))? S('List_User_Cache_'.session('pid')):$UserListInfo);
 		$this->assign('my1','btn0_a');
 		$this->display();
@@ -36,10 +35,11 @@ class UserController extends CommonController{
 	}
 	
 	public function del(){
-		$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/User/';
-		$pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		$pid = I("get.id");
 		if($this->usermanager->where(array("pid"=> $pid, "wUseID"=>session('wUseID')))->delete()){
 			$this->usermanager->UpdateUserDeleteInfo(I("get.id"));
+			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/User/';
 			header("Location:$url");
 		}else{
 			$this->error(L('S_parameter_e'));
@@ -47,7 +47,8 @@ class UserController extends CommonController{
 	}
 	
 	public function edit(){
-		$pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		$pid = I("get.id");
 		$find=$this->usermanager->where(array("pid" => $pid, "wUseID"=>session('wUseID')))->field('familyid , familyname')->find();
 		if($find){
 			$find['pid'] = I("get.id");
@@ -60,7 +61,8 @@ class UserController extends CommonController{
 	}
 	
 	public function update(){
-		$pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$pid = intval(decode(I("get.id") , C('GRYPTKEY')));
+		$pid = I("get.id");
 		if($this->usermanager->CheckPid($pid)){
 			$data  = I("post.");
 			$data["wUseID"] = session('wUseID');
@@ -83,7 +85,8 @@ class UserController extends CommonController{
 			$data["wUseID"] = session('wUseID');
 			if($this->usermanager->create($data)){
 				$pid = $this->usermanager->add();
-				$this->usermanager->UpdateUserAddInfo(array('pid'=> encode($pid , C('GRYPTKEY')), 'familyid'=>I('post.familyid'), 'familyname'=>I('post.familyname')));
+				$this->usermanager->UpdateUserAddInfo(array('pid'=> $pid , 'familyid'=>I('post.familyid'), 'familyname'=>I('post.familyname')));
+				//encode($pid , C('GRYPTKEY'))
 				$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/User/';
 				header("Location:$url");
 			}else{

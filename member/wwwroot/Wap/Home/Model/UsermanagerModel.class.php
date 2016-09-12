@@ -13,8 +13,12 @@ class UsermanagerModel extends Model{
 	);
 	
 	public function CheckPid($Pid){
-		$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('pid')->select();
-		$ListPidO = TarrayToOarray($ListPid, 'pid');
+		if(S('List_User_Cache_'.session('pid'))){
+			$ListPidO = TarrayToOarray(S('List_User_Cache_'.session('pid')), 'pid');
+		}else{
+			$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('pid')->select();
+			$ListPidO = TarrayToOarray($ListPid, 'pid');
+		}
 		if(in_array($Pid, $ListPidO)){
 			return true;
 		}else{
@@ -24,9 +28,9 @@ class UsermanagerModel extends Model{
 
 	public function ReUpdateUserInfo(){
 		$list = $this->where(array('wUseID' => session('wUseID')))->field("wUseID",true)->order('pid desc')->select();
-		foreach ($list as $k => $v){
+		/*foreach ($list as $k => $v){
 			$list[$k]['pid'] = encode($v['pid'], C('GRYPTKEY'));
-		}
+		}*/
 		S('List_User_Cache_'.session('pid'), $list);
 		if(!S('List_User_Cache_'.session('pid'))){
 			return $list;

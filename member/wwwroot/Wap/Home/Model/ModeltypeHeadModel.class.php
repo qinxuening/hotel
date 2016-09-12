@@ -21,8 +21,12 @@ class ModeltypeHeadModel extends RelationModel{
 	);
 	
 	public function CheckPid($Pid){
-		$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('Pid')->select();
-		$ListPidO = TarrayToOarray($ListPid, 'Pid');
+		if(S('List_Type_Cache_'.session('pid'))){
+			$ListPidO = TarrayToOarray(S('List_Type_Cache_'.session('pid')), 'Pid');
+		}else{
+			$ListPid = $this->where(array('wUseID' => session('wUseID')))->field('Pid')->select();
+			$ListPidO = TarrayToOarray($ListPid, 'Pid');
+		}
 		if(in_array($Pid, $ListPidO)){
 			return true;
 		}else{
@@ -32,9 +36,9 @@ class ModeltypeHeadModel extends RelationModel{
 	
 	public function ReUpdateTypeInfo(){
 		$list = $this->where(array("wUseID" => session('wUseID')))->order(array('Pid'=>'desc'))->field('wName, Pid')->select();
-		foreach ($list as $k => $v){
-			$list[$k]['Pid'] = encode($v['Pid'], C('GRYPTKEY'));
-		}
+		/*foreach ($list as $k => $v){
+			$list[$k]['Pid'] = $v['Pid'];//encode($v['Pid'], C('GRYPTKEY'));
+		}*/
 		S('List_Type_Cache_'.session('pid'), $list);
 		if(!S('List_Type_Cache_'.session('pid'))){
 			return $list;

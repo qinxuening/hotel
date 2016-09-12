@@ -22,7 +22,8 @@ class TimeController extends CommonController{
 	}
 
 	public function del(){
-		$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		$Pid = I("get.id");
 		if($this->timeaction_head->CheckPid($Pid)){
 			$result = $this->timeaction_head->relation(true)->where(array('Pid' => $Pid))->delete();
 			if($result){
@@ -38,20 +39,26 @@ class TimeController extends CommonController{
 	}
 
 	public function edit(){
-		$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		$Pid = I("get.id");
 		if($this->timeaction_head->CheckPid($Pid)){
-			//$wMB=session('wMB');
-			//$wUseID=session('wUseID');
 			//$list = $this->mobilemanager->query("select * from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('02','03','12','15')");
 			if(!S('List_Mobile_Cache_'.session('pid'))){
-				$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
+				$Rlist = $this->mobilemanager->ReUpdateMobileInfo();
+			}else{
+				$Rlist = S('List_Mobile_Cache_'.session('pid'));
+			}
+			foreach ($Rlist as $k => $v){
+				if(substr($v['McID'] , 0 ,2) != '12'){
+					$list[] = $Rlist[$k];
+				}
 			}
 			$find = $this->timeaction_head->where(array('Pid' => $Pid))->field("wUseID",true)->find();
 			if($find){
 				$findmodel = $this->timeaction->where(array('wModel' => $find['Pid']))->field('McID')->select();
 				$m = TarrayToOarray($findmodel, 'McID');
 				$this->assign("checklist",$m);
-				$this->assign("myMobile",S('List_Mobile_Cache_'.session('pid')) ? S('List_Mobile_Cache_'.session('pid')) : $list);
+				$this->assign("myMobile" , $list);
 				$find['Pid'] = I("get.id");
 				$this->assign('type',$find);
 				$this->assign('my6','btn0_a');
@@ -65,14 +72,29 @@ class TimeController extends CommonController{
 	}
 
 	public function update(){
-		$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		//$Pid=intval(decode(I("get.id") , C('GRYPTKEY')));
+		$Pid = I("get.id");
 		if($this->timeaction_head->CheckPid($Pid)){
-			$HeadInfo = I('post.');
+			/*$HeadInfo = I('post.');
 			$HeadInfo['wUseID'] = session('wUseID');
 			if($this->timeaction_head->create($HeadInfo)){
 				if($this->timeaction_head->where(array('Pid' => $Pid))->save()){
 					$this->timeaction_head->UpdateTimeInfo(array('wName' => trim(I('post.wName'))), I("get.id"));
 				}
+			}*/
+			$HeadInfo['wUseID'] = session('wUseID');
+			$HeadInfo['wTime'] = I('post.wTime');
+			$HeadInfo['wName'] = I('post.wName');
+			$HeadInfo['wType'] = I('post.wType')?I('post.wType'):0;
+			$HeadInfo['wMon'] = I('post.wMon')?I('post.wMon'):0;
+			$HeadInfo['wTues'] = I('post.wTues')?I('post.wTues'):0;
+			$HeadInfo['wWed'] = I('post.wWed')?I('post.wWed'):0;
+			$HeadInfo['wThur'] = I('post.wThur')?I('post.wThur'):0;
+			$HeadInfo['wFri'] = I('post.wFri')?I('post.wFri'):0;
+			$HeadInfo['wSat'] = I('post.wSat')?I('post.wSat'):0;
+			$HeadInfo['wSunday'] = I('post.wSunday')?I('post.wSunday'):0;
+			if($this->timeaction_head->create()){
+				$this->timeaction_head->where(array('Pid' => $Pid))->save($HeadInfo);
 			}
 			$this->timeaction->where(array('wModel' => $Pid))->delete();
 			$wModeldata=I('post.wModel',null);
@@ -91,14 +113,17 @@ class TimeController extends CommonController{
 	}
 
 	public function add(){
-		//$wMB=session('wMB');
-		//$wUseID=session('wUseID');
-		//$list = $this->mobilemanager->query("select `McID`, `McName` from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('02','03','12','15')");
-		$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
 		if(!S('List_Mobile_Cache_'.session('pid'))){
-			$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
+			$Rlist = $this->mobilemanager->ReUpdateMobileInfo();
+			}else{
+				$Rlist = S('List_Mobile_Cache_'.session('pid'));
+			}
+			foreach ($Rlist as $k => $v){
+				if(substr($v['McID'] , 0 ,2) != '12'){
+					$list[] = $Rlist[$k];
+			}
 		}
-		$this->assign("myMobile", S('List_Mobile_Cache_'.session('pid')) ? S('List_Mobile_Cache_'.session('pid')) : $list);
+		$this->assign("myMobile" , $list);
 		$this->assign('my7','btn0_a');
 		$this->display();
 	}
@@ -108,7 +133,7 @@ class TimeController extends CommonController{
 		$HeadInfo['wUseID'] = session('wUseID');
 		if($this->timeaction_head->create($HeadInfo)){
 			$id=$this->timeaction_head->add();
-			$this->timeaction_head->UpdateTimeAddInfo(array('wName' => I('post.wName'), 'Pid'=>  encode($id , C('GRYPTKEY'))));
+			$this->timeaction_head->UpdateTimeAddInfo(array('wName' => I('post.wName'), 'Pid'=>  $id));//encode($id , C('GRYPTKEY'))
 			$wModeldata=I('post.wModel',null);
 			for($i=0;$i<count($wModeldata);$i++){
 				$data['wModel']=$id;

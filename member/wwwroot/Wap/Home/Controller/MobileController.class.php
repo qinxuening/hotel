@@ -140,13 +140,13 @@ class MobileController extends CommonController{
 			   if('01' == $find['McID2']){
 				   	$username = session('wUseID');
 				   	$McID = $find['McID'];
-				   	if(!S('List_Ifi_Cache_'.session('pid'))){
+				   	if(!S('List_Ifi_Cache_'.session('pid').'_'.$McID)){
 				   	    $IrinfoList = $this->mobilemanager->SelectIfi($username , $McID);
 				   	}
 			   		$SelectIfi = M('irinfo')->where(array('KeyID' => '0000001' , 'wUserID' => session('wUseID') , 'MCID' => $McID))->field('KeyVar')->find();
 			   		$this->assign('McID2' , $find['McID']);
 			   		$this->assign('KeyVar' , $SelectIfi['KeyVar']);
-			   		$this->assign('IrinfoList' , S('List_Ifi_Cache_'.session('pid'))?S('List_Ifi_Cache_'.session('pid')):$IrinfoList);
+			   		$this->assign('IrinfoList' , S('List_Ifi_Cache_'.session('pid').'_'.$McID)?S('List_Ifi_Cache_'.session('pid').'_'.$McID):$IrinfoList);
 			    }
 				$this->assign('mobile',$find);
 				$this->assign("myMobile",$MobileArr ? $MobileArr:$list);
